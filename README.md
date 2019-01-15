@@ -4,9 +4,10 @@ The code is based on the assignmnt 2 in CS231n.
 
 
 * General Introduction
+
 ** Three-Layer Convolution Neural Network 
 
-$INPUT \rightarrow CONV->ReLU->POOL->FC->ReLU->FC->OUT$
+**INPUT -> CONV -> ReLU -> POOL -> FC -> ReLU -> FC -> OUT**
 
 
 ** Dataset Information - MNIST
@@ -103,4 +104,5 @@ Cause the size of train is 50,000, so I do 5-fold cross validation here. To find
 |200|96.374%|
 
 3. learning_rate 
+
 The result is wrong, so this part need further analysis. I guess some problems in calculation, cause the data is so tiny.
