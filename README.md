@@ -1,18 +1,18 @@
 # MNSIT Handwritten Digit Recognition
 
 The code is based on the assignmnt 2 in CS231n. 
+The develop platform is Windows 10 + Python 3.7 + Pychram. 
 
+## General Introduction
 
-* General Introduction
-
-** Three-Layer Convolution Neural Network 
+### Three-Layer Convolution Neural Network 
 
 **INPUT -> CONV -> ReLU -> POOL -> FC -> ReLU -> FC -> OUT**
 
 
-** Dataset Information - MNIST
+### Dataset Information - MNIST
 
-Gray picture dataset, the structure of per graph is [28x28x1]. The height and width is 28, while only 1 color channel.
+A gray picture dataset, the structure of per graph is [28x28x1]. The height and width is 28, while only 1 color channel.
 
 60,000 pictures for training, while 10,000 for test. 
 
@@ -22,43 +22,47 @@ More information please click:
 http://yann.lecun.com/exdb/mnist/
 
 
-** File Declaration 
+### File Declaration 
 
 |File Name|Introduction|
 |:-:|:-:|
-|main.py|Main py file to run|
+|main.py|Main python file to run|
 |data_load.py|To parse and load data in MNIST_data|
-|MNIST_data|Includes 4 file downloaded from official web page of MNIST|
-|/support/classifiers/cnn.py|Includes the CNN, three-layer net|
+|MNIST_data| Dataset, including 4 files downloaded from official webpage of MNIST|
+|/support/classifiers/cnn.py|the structure of three-layer CNN|
 
-* Tech Details
+## Tech Details
 
-** Data Pre Processing 
+### Data Pre Processing 
 Due to standard dataset, the size of picture is fixed. So, I don't need to worry much. Call get_MNIST_data() in data_load.py in the beigining of main.py. In order to formulate the data, I still minus mean for each image file
+    
     `mean_image = np.mean(X_train,axis=0)`
+
     `X_train -= mean_image`
+
     `X_val -= mean_image`
+
     `X_test -= mean_image`
 
-** Hyperparameter Setting 
+### Hyperparameter Setting 
 
 |HyerParameter|Value|
 |:-:|:-:|
-|stride(POOL)|1|
+|stride (POOL)|1|
 |Pad|1|
 |Size of Filter|3|
 |Height and width in POOLING|2|
-|stride(POOL)|2|
+|stride (POOL)|2|
 
-** Overfit small dataset
+> All functions below can run in main.py. They are all separated in parts, properly comment or uncomment. It will take around 2 hours to do a cross validation of a parameter. 
+
+### Overfit small dataset
 
 Before apply the CNN designed directly to the big dataset, I check whether it can overfit a small dataset at first, so as to make sure that it have the ability to learn. 
 
 ![Result of Small Dataset Overfit](https://i.loli.net/2019/01/17/5c408a6103e11.png)
 
-
-
-The detailed data of a run is here below:
+The detailed data of a random run is here below:
 
 |Epoch|Train Accuracy|Validation Accuracy|
 |:-:|:-:|:-:|
@@ -73,18 +77,20 @@ The detailed data of a run is here below:
 |...|100%|...|
 
 
-** Train and Test the Dataset
+### Train and Test the Dataset
 
 
-** Cross Validation
+### Cross Validation
 
 ![Cross Validation](https://i.loli.net/2019/01/17/5c408a91083ae.jpg)
 
 
-Cause the size of train is 50,000, so I do 5-fold cross validation here. To find a better setting of filter_size(k), batch_size and learning_rate.  
+Cause the size of train is 50,000, so I do 5-fold cross validation here. To find a better setting of `filter_size(k)`, `batch_size` and `learning_rate`.  
 
 `k_choices = [1,3,5,7]`
+
 `batch_size_choices = [30,50,100,200]`
+
 `learning_rate_choices = [1e-1,1e-2,1e-4,1e-8,1e-16]`
 
 1. filter_size 
