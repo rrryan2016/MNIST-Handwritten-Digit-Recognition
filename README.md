@@ -122,3 +122,5 @@ The results of cross validation are as below, and the average value is calculate
 3. learning_rate 
 
 The result is wrong, so this part need further analysis. I guess some problems in calculation, cause the data is so tiny.
+
+中文叙述地址：https://blog.csdn.net/AAAAshin/article/details/86532986
