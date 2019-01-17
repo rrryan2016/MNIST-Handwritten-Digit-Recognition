@@ -1,6 +1,7 @@
 # MNSIT Handwritten Digit Recognition
 
 The code is based on the assignmnt 2 in CS231n. 
+
 The develop platform is Windows 10 + Python 3.7 + Pychram. 
 
 ## General Introduction
@@ -14,7 +15,7 @@ The develop platform is Windows 10 + Python 3.7 + Pychram.
 
 A gray picture dataset, the structure of per graph is [28x28x1]. The height and width is 28, while only 1 color channel.
 
-60,000 pictures for training, while 10,000 for test. 
+In default, 60,000 pictures for training, while 10,000 for test. 
 
 ![Examples of MNIST](https://i.loli.net/2019/01/17/5c408a3a0d48c.jpeg)
 
@@ -36,27 +37,30 @@ http://yann.lecun.com/exdb/mnist/
 ### Data Pre Processing 
 Due to standard dataset, the size of picture is fixed. So, I don't need to worry much. Call get_MNIST_data() in data_load.py in the beigining of main.py. In order to formulate the data, I still minus mean for each image file
     
-    `mean_image = np.mean(X_train,axis=0)`
+`mean_image = np.mean(X_train,axis=0)`
 
-    `X_train -= mean_image`
+`X_train -= mean_image`
 
-    `X_val -= mean_image`
+`X_val -= mean_image`
 
-    `X_test -= mean_image`
+`X_test -= mean_image`
 
 ### Hyperparameter Setting 
 
-|HyerParameter|Value|
+|Hyerparameter|Value|
 |:-:|:-:|
-|stride (POOL)|1|
-|Pad|1|
-|Size of Filter|3|
-|Height and width in POOLING|2|
-|stride (POOL)|2|
+|stride (CONV)|1|
+|Pad(CONV)|1|
+|Size of filter(CONV)|3|
+|Number of filters(CONV)|32|
+|Size of filter(POOL)|2|
+|Stride (POOL)|2|
+|Bacth size|50|
+|Learning rate|1e-4|
 
-> All functions below can run in main.py. They are all separated in parts, properly comment or uncomment. It will take around 2 hours to do a cross validation of a parameter. 
+> All functions below can run in main.py. They are all separated in parts, please properly comment or uncomment. WARINNG: It will take around 2 hours to do a cross validation of a parameter. 
 
-### Overfit small dataset
+### Overfit Small Dataset
 
 Before apply the CNN designed directly to the big dataset, I check whether it can overfit a small dataset at first, so as to make sure that it have the ability to learn. 
 
@@ -84,6 +88,7 @@ The detailed data of a random run is here below:
 
 ![Cross Validation](https://i.loli.net/2019/01/17/5c408a91083ae.jpg)
 
+Use *Accuracy* as the evaluation method. 
 
 Cause the size of train is 50,000, so I do 5-fold cross validation here. To find a better setting of `filter_size(k)`, `batch_size` and `learning_rate`.  
 
@@ -92,6 +97,8 @@ Cause the size of train is 50,000, so I do 5-fold cross validation here. To find
 `batch_size_choices = [30,50,100,200]`
 
 `learning_rate_choices = [1e-1,1e-2,1e-4,1e-8,1e-16]`
+
+The results of cross validation are as below, and the average value is calculated manually. 
 
 1. filter_size 
 
