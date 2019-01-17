@@ -14,9 +14,9 @@ The code is based on the assignmnt 2 in CS231n.
 
 Gray picture dataset, the structure of per graph is [28x28x1]. The height and width is 28, while only 1 color channel.
 
-60,000 pictures for training, while 10,000 for 
+60,000 pictures for training, while 10,000 for test. 
 
-<pic>
+![Examples of MNIST](https://i.loli.net/2019/01/17/5c408a3a0d48c.jpeg)
 
 More information please click: 
 http://yann.lecun.com/exdb/mnist/
@@ -54,7 +54,9 @@ Due to standard dataset, the size of picture is fixed. So, I don't need to worry
 
 Before apply the CNN designed directly to the big dataset, I check whether it can overfit a small dataset at first, so as to make sure that it have the ability to learn. 
 
-<pic>
+![Result of Small Dataset Overfit](https://i.loli.net/2019/01/17/5c408a6103e11.png)
+
+
 
 The detailed data of a run is here below:
 
@@ -76,7 +78,8 @@ The detailed data of a run is here below:
 
 ** Cross Validation
 
-<pic>
+![Cross Validation](https://i.loli.net/2019/01/17/5c408a91083ae.jpg)
+
 
 Cause the size of train is 50,000, so I do 5-fold cross validation here. To find a better setting of filter_size(k), batch_size and learning_rate.  
 
